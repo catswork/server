@@ -12,6 +12,11 @@ const config = {
 		clientSecret: '4Qsy55wMCS5ldFFE3vu7fw-N',
 		redirectUri: 'http://localhost:7777/auth',
 		scope: 'email profile'
+	},
+	tokens: {
+		cookieName: 'cats_work_auth',
+		secret: 'cdklajfldksjalkfdsalkfjdslkajfldksajl',
+		expiresInSeconds: 7 * 24 * 60 * 60
 	}
 }
 

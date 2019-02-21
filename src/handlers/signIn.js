@@ -1,7 +1,9 @@
 const config = require('../config')
 const Google = require('../Google')
 const Error = require('../Error')
+
 const Users = require('../services/Users')
+const Tokens = require('../services/Tokens')
 
 const AUTHORIZATION_URL = Google.getAuthorizationUrl(config.google.clientId, config.google.redirectUri, config.google.scope, true)
 
@@ -40,13 +42,13 @@ function registerSignInHandlers(app) {
 						})
 				})
 				.then((id) => {
-					console.log(id, email)
-
+					return Tokens.sign(id, config.tokens.secret, config.tokens.expiresInSeconds)
+				})
+				.then((token) => {
+					response.cookie(config.tokens.cookieName, token, { httpOnly: true })
 					response.redirect('/')
 				})
 				.catch((error) => {
-					console.log(error)
-
 					response.redirect('/error')
 				})
 		}
