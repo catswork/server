@@ -1,6 +1,11 @@
+const path = require('path')
 
 const config = {
 	port: 7777,
+	client: {
+		staticRoot: path.join(__dirname, '..', '..', 'web-client', 'build'),
+		htmlPath: path.join(__dirname, '..', '..', 'web-client', 'index.html')
+	},
 	database: {
 		host: 'localhost',
 		user: 'root',

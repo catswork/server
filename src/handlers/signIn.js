@@ -12,6 +12,11 @@ function registerSignInHandlers(app) {
 		response.redirect(AUTHORIZATION_URL)
 	})
 
+	app.get('/sign-out', (_, response) => {
+		response.clearCookie(config.tokens.cookieName)
+		response.redirect('/')
+	})
+
 	app.get('/auth', (request, response) => {
 		if (request.query.error || !request.query.code) {
 			response.redirect('/error')
